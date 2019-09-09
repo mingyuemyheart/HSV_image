@@ -2,6 +2,7 @@ import numpy as np
 import cv2
 import os
 import time
+import datetime
 
 def checkposition(frame, imgname):
     # 原图转为hsv格式的灰度图
@@ -165,28 +166,28 @@ def main():
     for i in range(0, len(list)):
         imgpath = os.path.join(filesdir, list[i])
         imgname = os.path.basename(list[i])
-        if imgname.endswith('uv'):
-            print(imgname)
-            if os.path.exists(imgpath):
-                frame = cv2.imread(imgpath)
-                print('result: \033[34m', calculate(frame, imgname))
-            else:
-                print('\033[31mImage not exist')
+        # if imgname.endswith('uv'):
+        #     print(imgname)
+        #     if os.path.exists(imgpath):
+        #         frame = cv2.imread(imgpath)
+        #         print('result: \033[34m', calculate(frame, imgname))
+        #     else:
+        #         print('\033[31mImage not exist')
+        #
+        #     print('\033[0m-------------------------------------------------------')
 
-            print('\033[0m-------------------------------------------------------')
-            time.sleep(0.1)
 
-    # while True:
-    #     print('\nPlease input image name，no suffix')
-    #     imgname = input('imagename: ')
-    #     filename = './src/' + imgname
-    #     if os.path.exists(filename):
-    #         frame = cv2.imread(filename)
-    #         print('result:\033[34m', calculate(frame, imgname))
-    #     else:
-    #         print('\033[31mImage not exist')
-    #
-    #     print('\033[0m-------------------------------------------------------')
+    while True:
+        print('\nPlease input image name，no suffix')
+        imgname = input('imagename: ')
+        filename = filesdir + imgname
+        if os.path.exists(filename):
+            frame = cv2.imread(filename)
+            print('result:\033[34m', calculate(frame, imgname))
+        else:
+            print('\033[31mImage not exist')
+
+        print('\033[0m-------------------------------------------------------')
 
 
 if __name__ == '__main__':
